@@ -25,6 +25,7 @@ export default function Video({
   loop = true,
   autoPlay = true,
   controls = true,
+  compact = false,
 }: {
   src: string;
   poster?: string;
@@ -39,6 +40,8 @@ export default function Video({
   autoPlay?: boolean;
   /** The little play / sound pair in the corner. */
   controls?: boolean;
+  /** Icon-only controls, for cards too narrow to carry a word. */
+  compact?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const reduced = useReducedMotion();
@@ -67,12 +70,17 @@ export default function Video({
 
     const sync = () => {
       if (inView && wantsPlay) {
-        el.play().catch(() => {
-          // Autoplay refused — fall back to the play button.
+        if (!el.paused) return;
+        el.play().catch((err: DOMException) => {
+          // AbortError only means a pause overtook the play — it happens
+          // whenever this effect re-runs mid-request, and it is harmless.
+          // A refusal is the one worth reacting to: fall back to the
+          // play button rather than pretending it is running.
+          if (err?.name === "AbortError") return;
           touched.current = true;
           setWantsPlay(false);
         });
-      } else {
+      } else if (!el.paused) {
         el.pause();
       }
     };
@@ -90,6 +98,19 @@ export default function Video({
 
     return () => observer.disconnect();
   }, [wantsPlay]);
+
+  // The clip starts fetching as the HTML is parsed, so it can settle
+  // before React hydrates — and a media event that has already fired is
+  // never replayed. Left waiting for it the clip stays at `opacity-0`,
+  // poster and all, which reads as a dead black card. Ask the element
+  // where it actually got to. Metadata is enough to fade in: that is the
+  // point at which the poster is on screen.
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    if (el.error) setFailed(true);
+    else if (el.readyState >= 1) setReady(true);
+  }, []);
 
   // `muted` is a property, not an attribute — React's initial value can
   // be lost on rehydration, so keep it in sync by hand.
@@ -165,8 +186,13 @@ export default function Video({
         muted
         playsInline
         preload="metadata"
-        onLoadedData={() => setReady(true)}
-        onError={() => setFailed(true)}
+        onLoadedMetadata={() => setReady(true)}
+        onError={(e) => {
+          // `error` on a failed <track> is retargeted to the media element
+          // by React, and a missing caption file is no reason to throw the
+          // clip away. Only the video's own error counts.
+          if (e.currentTarget.error) setFailed(true);
+        }}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         className={`h-full w-full ${contain ? "object-contain" : "object-cover"} transition-[opacity,transform,filter] duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
@@ -201,7 +227,9 @@ export default function Video({
             onClick={toggle(() => setMuted((m) => !m))}
             aria-pressed={!muted}
             aria-label={muted ? `Unmute ${label}` : `Mute ${label}`}
-            className="pointer-events-auto flex items-center gap-2 rounded-full border border-cream/25 bg-ink/45 px-3.5 py-2 text-cream/85 opacity-70 backdrop-blur-md transition duration-500 hover:border-blush/60 hover:text-cream focus-visible:opacity-100 group-hover/clip:opacity-100"
+            className={`pointer-events-auto flex items-center justify-center border border-cream/25 bg-ink/45 text-cream/85 opacity-70 backdrop-blur-md transition duration-500 hover:border-blush/60 hover:text-cream focus-visible:opacity-100 group-hover/clip:opacity-100 ${
+              compact ? "h-9 w-9 rounded-full" : "gap-2 rounded-full px-3.5 py-2"
+            }`}
           >
             <svg
               viewBox="0 0 24 24"
@@ -220,9 +248,11 @@ export default function Video({
                 <path d="M15.2 9.2a4 4 0 0 1 0 5.6M17.8 6.8a7.5 7.5 0 0 1 0 10.4" />
               )}
             </svg>
-            <span className="font-body text-[0.5rem] tracking-[0.3em] uppercase">
-              {muted ? "sound off" : "sound on"}
-            </span>
+            {!compact && (
+              <span className="font-body text-[0.5rem] tracking-[0.3em] uppercase">
+                {muted ? "sound off" : "sound on"}
+              </span>
+            )}
           </button>
         </div>
       )}

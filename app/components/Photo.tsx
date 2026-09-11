@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { her } from "../content";
 
@@ -29,6 +29,17 @@ export default function Photo({
 }) {
   const [failed, setFailed] = useState(false);
   const [loaded, setLoaded] = useState(false);
+
+  // An eager image starts downloading while the HTML is still being
+  // parsed, so it is usually decoded before React hydrates and attaches
+  // `onLoad` — and a load event that has already fired is never replayed.
+  // Waiting for it would leave the photograph at `opacity-0` for good, so
+  // ask the element what happened instead of waiting to be told.
+  const attach = useCallback((el: HTMLImageElement | null) => {
+    if (!el || !el.complete) return;
+    if (el.naturalWidth > 0) setLoaded(true);
+    else setFailed(true);
+  }, []);
 
   // Nothing was ever asked for: an empty frame, on purpose.
   if (!src) {
@@ -90,6 +101,7 @@ export default function Photo({
     <div className={`relative overflow-hidden bg-linen ${className}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
+        ref={attach}
         src={src}
         alt={alt}
         loading={priority ? "eager" : "lazy"}

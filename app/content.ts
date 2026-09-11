@@ -88,7 +88,41 @@ export const reel: {
       caption: "Mid-sentence, as usual",
       aspect: "portrait",
     },
-    // { src: "/videos/2.mp4", poster: "/photos/2.jpeg", caption: "The laugh, caught early" },
+    {
+      src: "/videos/2.mp4",
+      poster: "/photos/2.jpeg",
+      label: "Kanishka, laughing",
+      caption: "The laugh, caught early",
+      aspect: "portrait",
+    },
+    {
+      src: "/videos/3.mp4",
+      poster: "/photos/3.jpeg",
+      label: "Kanishka, somewhere else entirely",
+      caption: "Thinking about something else entirely",
+      aspect: "portrait",
+    },
+    {
+      src: "/videos/4.mp4",
+      poster: "/photos/4.jpeg",
+      label: "Kanishka on a good day",
+      caption: "A good day",
+      aspect: "portrait",
+    },
+    {
+      src: "/videos/5.mp4",
+      poster: "/photos/5.jpeg",
+      label: "Kanishka — the favourite one",
+      caption: "This one is my favourite",
+      aspect: "portrait",
+    },
+    {
+      src: "/videos/6.mp4",
+      poster: "/photos/6.jpeg",
+      label: "Kanishka, an ordinary evening",
+      caption: "Nothing happening at all, and still worth keeping",
+      aspect: "portrait",
+    },
   ],
 };
 
@@ -164,7 +198,7 @@ export const finale = {
 
 export const music = {
   enabled: true,
-  src: "/music/song.mp3",
+  src: "/music/songs.mpeg",
   title: "a song",
 };
 

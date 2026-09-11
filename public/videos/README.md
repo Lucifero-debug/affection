@@ -5,12 +5,18 @@ Drop her clips in this folder, then point at them from `reel` in
 
 ## What the page expects by default
 
-| File     | Where it appears                    |
-| -------- | ----------------------------------- |
-| `1.mp4`  | the reel — "Kanishka, in motion"    |
+| File               | Where it appears                          |
+| ------------------ | ----------------------------------------- |
+| `1.mp4` … `6.mp4` | the reel — "Kanishka, in motion"          |
 
-One clip is enough. Add more to `reel.clips` and numbered switches
-appear under the frame.
+Six by default, one per photo, each one posters off the matching
+`/photos/N.jpeg` so the frame is warm before the video arrives. The
+numbered switches under the frame move between them.
+
+You do not need all six. Delete the clips you have no video for from
+`reel.clips` in `app/content.ts` — a clip left pointing at a file that
+isn't there shows the placeholder, which is fine while you gather them
+but not what you want her to land on.
 
 ## How the clip behaves
 
