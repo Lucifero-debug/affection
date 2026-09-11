@@ -11,7 +11,7 @@ const TARGET_VOLUME = 0.42;
  * deliberately not one of them — no browser counts it — so listening for it
  * would only arm a handler that can never succeed.
  */
-const GESTURES = ["pointerdown", "touchend", "keydown"] as const;
+const GESTURES = ["pointerdown", "pointerup", "touchend", "mousedown", "keydown", "click"] as const;
 
 /**
  * The song lets itself in.
@@ -69,7 +69,14 @@ export default function MusicPlayer() {
   useEffect(() => {
     if (!music.enabled || !music.src || !music.autoplay) return;
 
+    const audio = audioRef.current;
+    if (!audio) return;
+
     const ac = new AbortController();
+    /** She has touched the page, so consent exists; keep trying until it takes. */
+    let asked = false;
+
+    const attempt = () => void start().then((ok) => ok && ac.abort());
 
     const onGesture = (event: Event) => {
       // A tap on the player itself is hers, and `toggle` already answers it.
@@ -78,13 +85,31 @@ export default function MusicPlayer() {
       const target = event.target;
       if (target instanceof Node && buttonRef.current?.contains(target)) return ac.abort();
       if (decided.current) return ac.abort();
-      void start().then((ok) => ok && ac.abort());
+      asked = true;
+      attempt();
     };
+
+    // If she touched the page before the song had loaded enough to start, the
+    // consent is still good — take it up again the moment there is audio to play.
+    audio.addEventListener(
+      "canplay",
+      () => {
+        if (asked && !decided.current) attempt();
+      },
+      { signal: ac.signal },
+    );
 
     void start().then((ok) => {
       if (ok || ac.signal.aborted || decided.current) return;
+      // Capture phase: a handler somewhere on the page may stop propagation
+      // (the lightbox does), and a gesture that never reaches us is a song
+      // that never starts. Capture runs before anything can swallow it.
       GESTURES.forEach((event) =>
-        window.addEventListener(event, onGesture, { passive: true, signal: ac.signal }),
+        window.addEventListener(event, onGesture, {
+          capture: true,
+          passive: true,
+          signal: ac.signal,
+        }),
       );
     });
 
