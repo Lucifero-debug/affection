@@ -198,6 +198,10 @@ export const finale = {
 
 export const music = {
   enabled: true,
+  /* Start the song on load. Browsers will not allow audible sound until the
+     page has been given a gesture, so it begins on her first tap if the
+     opening request is refused. Set false to go back to tap-to-play. */
+  autoplay: true,
   src: "/music/songs.mpeg",
   title: "a song",
 };

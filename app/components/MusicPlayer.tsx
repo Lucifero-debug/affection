@@ -1,27 +1,40 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { music } from "../content";
 
 const BARS = [0, 0.22, 0.44, 0.14];
 const TARGET_VOLUME = 0.42;
 
 /**
- * A quiet, opt-in player. Nothing autoplays — she taps it — and the
- * volume eases in rather than arriving at full. If the mp3 isn't there
- * the button removes itself silently.
+ * Gestures the browser's autoplay policy accepts as consent. Scrolling is
+ * deliberately not one of them — no browser counts it — so listening for it
+ * would only arm a handler that can never succeed.
+ */
+const GESTURES = ["pointerdown", "touchend", "keydown"] as const;
+
+/**
+ * The song lets itself in.
+ *
+ * Browsers refuse to play audible sound until a page has been given a
+ * gesture, so this asks the moment it mounts and, when that is refused —
+ * which is the ordinary answer on a first visit — waits and starts on her
+ * first tap or keypress instead. Either way the volume eases in rather than
+ * arriving at full, and the moment she uses the button herself her choice
+ * outranks all of this. If the file isn't there the button removes itself.
  */
 export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const fadeRef = useRef<number>(0);
+  /** She has worked the button herself; stop trying to start it for her. */
+  const decided = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [available, setAvailable] = useState(true);
 
   useEffect(() => () => cancelAnimationFrame(fadeRef.current), []);
 
-  if (!music.enabled || !music.src || !available) return null;
-
-  const fade = (audio: HTMLAudioElement, to: number, done?: () => void) => {
+  const fade = useCallback((audio: HTMLAudioElement, to: number, done?: () => void) => {
     cancelAnimationFrame(fadeRef.current);
     const from = audio.volume;
     const start = performance.now();
@@ -33,11 +46,57 @@ export default function MusicPlayer() {
       else done?.();
     };
     fadeRef.current = requestAnimationFrame(tick);
-  };
+  }, []);
+
+  /** Begin playing. False means the browser refused — not that it is broken. */
+  const start = useCallback(async () => {
+    const audio = audioRef.current;
+    if (!audio) return false;
+    if (!audio.paused) return true;
+
+    try {
+      audio.volume = 0;
+      await audio.play(); // onPlay flips the button over
+      fade(audio, TARGET_VOLUME);
+      return true;
+    } catch {
+      // A refusal is a policy decision, not a missing file. Keep the button:
+      // hiding it here would leave her no way to ever hear the song.
+      return false;
+    }
+  }, [fade]);
+
+  useEffect(() => {
+    if (!music.enabled || !music.src || !music.autoplay) return;
+
+    const ac = new AbortController();
+
+    const onGesture = (event: Event) => {
+      // A tap on the player itself is hers, and `toggle` already answers it.
+      // Starting the song here as well would race her click, which would then
+      // read the song as playing and turn it straight back off.
+      const target = event.target;
+      if (target instanceof Node && buttonRef.current?.contains(target)) return ac.abort();
+      if (decided.current) return ac.abort();
+      void start().then((ok) => ok && ac.abort());
+    };
+
+    void start().then((ok) => {
+      if (ok || ac.signal.aborted || decided.current) return;
+      GESTURES.forEach((event) =>
+        window.addEventListener(event, onGesture, { passive: true, signal: ac.signal }),
+      );
+    });
+
+    return () => ac.abort();
+  }, [start]);
+
+  if (!music.enabled || !music.src || !available) return null;
 
   const toggle = async () => {
     const audio = audioRef.current;
     if (!audio) return;
+    decided.current = true;
 
     if (playing) {
       setPlaying(false);
@@ -45,14 +104,7 @@ export default function MusicPlayer() {
       return;
     }
 
-    try {
-      audio.volume = 0;
-      await audio.play();
-      setPlaying(true);
-      fade(audio, TARGET_VOLUME);
-    } catch {
-      setAvailable(false);
-    }
+    await start();
   };
 
   return (
@@ -61,12 +113,15 @@ export default function MusicPlayer() {
         ref={audioRef}
         src={music.src}
         loop
-        preload="none"
+        preload="metadata"
         onError={() => setAvailable(false)}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
       />
 
       <button
+        ref={buttonRef}
         type="button"
         onClick={toggle}
         aria-pressed={playing}
