@@ -31,6 +31,9 @@ export default function MusicPlayer() {
   const decided = useRef(false);
   const [playing, setPlaying] = useState(false);
   const [available, setAvailable] = useState(true);
+  /** The browser turned the song down on load, so she has no way of knowing
+      it is there. Only then is the hint worth the corner of her screen. */
+  const [refused, setRefused] = useState(false);
 
   useEffect(() => () => cancelAnimationFrame(fadeRef.current), []);
 
@@ -101,6 +104,7 @@ export default function MusicPlayer() {
 
     void start().then((ok) => {
       if (ok || ac.signal.aborted || decided.current) return;
+      setRefused(true);
       // Capture phase: a handler somewhere on the page may stop propagation
       // (the lightbox does), and a gesture that never reaches us is a song
       // that never starts. Capture runs before anything can swallow it.
@@ -144,6 +148,19 @@ export default function MusicPlayer() {
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
       />
+
+      {/* Only while the song is sitting there silent and unasked-for. It takes
+          no pointer events: the tap that dismisses it should fall through to
+          the page, where it counts as the gesture that starts the music. */}
+      {refused && !playing && (
+        <span
+          aria-hidden="true"
+          className="animate-fade-up pointer-events-none fixed right-5 bottom-[4.5rem] z-70 rounded-full border border-rose/25 bg-cream/85 px-3.5 py-2 font-body text-[0.55rem] tracking-[0.28em] text-mulberry/85 uppercase shadow-lift backdrop-blur-md sm:right-8 sm:bottom-[5.25rem]"
+          style={{ animationDelay: "4200ms" }}
+        >
+          tap anywhere for sound
+        </span>
+      )}
 
       <button
         ref={buttonRef}
