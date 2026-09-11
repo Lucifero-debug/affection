@@ -12,7 +12,7 @@ import Sparkles from "./Sparkles";
  */
 export default function Drafts() {
   return (
-    <section id="drafts" className="relative overflow-hidden bg-ink px-6 py-24 sm:py-32">
+    <section id="drafts" className="relative overflow-hidden bg-ink px-6 py-14 sm:py-32">
       <Sparkles count={22} color="bg-blush/60" className="-z-10" />
 
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -24,14 +24,14 @@ export default function Drafts() {
           <p className="font-body text-[0.56rem] tracking-[0.4em] text-blush/60 uppercase">
             {drafts.kicker}
           </p>
-          <h2 className="mt-8 font-display text-[clamp(2rem,5.5vw,3.4rem)] leading-[1.1] font-light text-cream text-balance">
+          <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,3.4rem)] leading-[1.1] font-light text-cream text-balance sm:mt-8">
             {drafts.heading}
             <span className="block text-blush italic">{drafts.headingItalic}</span>
           </h2>
         </Reveal>
 
         {/* The thread */}
-        <ol className="mt-16 space-y-5">
+        <ol className="mt-9 space-y-3.5 sm:mt-16 sm:space-y-5">
           {drafts.messages.map((message, i) => (
             <Reveal as="li" key={message.text} delay={(i % 3) * 90} className="flex flex-col items-end">
               <div className="max-w-[85%] rounded-[1.35rem] rounded-br-md border border-rose/25 bg-rose/12 px-5 py-3.5 text-left backdrop-blur-sm sm:max-w-[75%]">
@@ -63,12 +63,12 @@ export default function Drafts() {
           </Reveal>
         </ol>
 
-        <Reveal delay={120} className="mt-16 text-center">
+        <Reveal delay={120} className="mt-9 text-center sm:mt-16">
           <div
             className="mx-auto h-px w-24 bg-gradient-to-r from-transparent via-blush/50 to-transparent"
             aria-hidden="true"
           />
-          <p className="mt-10 font-display text-[clamp(1.3rem,3.4vw,2rem)] leading-[1.5] font-light text-blush/85 italic text-balance">
+          <p className="mt-6 font-display text-[clamp(1.3rem,3.4vw,2rem)] leading-[1.5] font-light text-blush/85 italic text-balance sm:mt-10">
             {drafts.footer}
           </p>
         </Reveal>

@@ -46,22 +46,22 @@ export default function Gallery() {
   const active = openIndex === null ? null : photos[openIndex];
 
   return (
-    <section id="gallery" className="relative px-6 py-24 sm:py-32">
+    <section id="gallery" className="relative px-6 py-14 sm:py-32">
       <div className="mx-auto max-w-6xl">
         <ChapterMark numeral={gallery.chapter} label={gallery.label} align="center" />
 
-        <Reveal delay={120} className="mx-auto mt-8 max-w-2xl text-center">
+        <Reveal delay={120} className="mx-auto mt-5 max-w-2xl text-center sm:mt-8">
           <h2 className="font-display text-[clamp(2.2rem,6vw,3.8rem)] leading-tight font-light text-ink">
             {gallery.heading}
             <span className="block text-mulberry italic">{gallery.headingItalic}</span>
           </h2>
-          <p className="mt-6 font-body text-[0.92rem] leading-relaxed text-muted">
+          <p className="mt-4 font-body text-[0.92rem] leading-relaxed text-muted sm:mt-6">
             {gallery.sub}
           </p>
         </Reveal>
 
         {/* Masonry */}
-        <div className="mt-16 columns-1 gap-5 sm:columns-2 lg:columns-3 [&>*]:mb-5">
+        <div className="mt-9 columns-2 gap-3.5 [&>*]:mb-3.5 lg:columns-3 sm:mt-16 sm:gap-5 sm:[&>*]:mb-5">
           {photos.map((photo, i) => (
             <Reveal
               key={photo.src + i}
@@ -174,7 +174,7 @@ export default function Gallery() {
 
           <figure
             key={active.src}
-            className="animate-fade-up flex max-h-full min-h-0 w-full max-w-4xl flex-col items-center gap-5"
+            className="animate-fade-up flex max-h-full min-h-0 w-full max-w-4xl flex-col items-center gap-3.5 sm:gap-5"
             onClick={(e) => e.stopPropagation()}
           >
             <Photo

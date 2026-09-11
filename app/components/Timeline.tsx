@@ -36,24 +36,24 @@ export default function Timeline() {
   );
 
   return (
-    <section id="story" className="relative overflow-hidden bg-cream px-6 py-24 sm:py-32">
+    <section id="story" className="relative overflow-hidden bg-cream px-6 py-14 sm:py-32">
       <Sparkles count={22} className="-z-10" />
 
       <div className="mx-auto max-w-5xl">
         <ChapterMark numeral={timeline.chapter} label={timeline.label} align="center" />
 
-        <Reveal delay={100} className="mx-auto mt-8 max-w-2xl text-center">
+        <Reveal delay={100} className="mx-auto mt-5 max-w-2xl text-center sm:mt-8">
           <h2 className="font-display text-[clamp(2.2rem,6vw,3.8rem)] leading-[1.08] font-light">
             <span className="shimmer">{timeline.heading}</span>
             <span className="block text-mulberry italic">{timeline.headingItalic}</span>
           </h2>
-          <p className="mt-6 font-body text-[0.92rem] leading-relaxed text-muted">
+          <p className="mt-4 font-body text-[0.92rem] leading-relaxed text-muted sm:mt-6">
             {timeline.sub}
           </p>
         </Reveal>
 
         {/* ── The thread ─────────────────────────────────────── */}
-        <div ref={trackRef} className="relative mt-20 pl-10 sm:pl-0">
+        <div ref={trackRef} className="relative mt-10 pl-10 sm:pl-0 sm:mt-20">
           {/* Rail — hard left on small screens, centred from sm up */}
           <div
             className="absolute top-2 bottom-2 left-[7px] w-px bg-rose/20 sm:left-1/2 sm:-translate-x-1/2"
@@ -66,7 +66,7 @@ export default function Timeline() {
             />
           </div>
 
-          <ol className="space-y-16 sm:space-y-24">
+          <ol className="space-y-8 sm:space-y-24">
             {timeline.milestones.map((moment, i) => (
               <li
                 key={moment.title}
@@ -106,7 +106,7 @@ export default function Timeline() {
 
           {/* The thread doesn't end, it just goes out of frame */}
           <div
-            className="relative mt-16 flex justify-center sm:mt-24"
+            className="relative mt-9 flex justify-center sm:mt-24"
             aria-hidden="true"
           >
             <span className="font-script text-[clamp(1.6rem,4vw,2.4rem)] leading-none text-rose/70">

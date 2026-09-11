@@ -54,7 +54,7 @@ export default function Since() {
   ];
 
   return (
-    <section id="since" className="relative isolate overflow-hidden bg-ink px-6 py-28 text-center sm:py-36">
+    <section id="since" className="relative isolate overflow-hidden bg-ink px-6 py-16 text-center sm:py-36">
       <Aurora tone="night" opacity={0.55} className="-z-10" />
       <Sparkles count={34} color="bg-blush/80" className="-z-10" />
 
@@ -71,14 +71,14 @@ export default function Since() {
           </span>
         </p>
 
-        <h2 className="mt-8 font-display text-[clamp(1.8rem,5vw,3rem)] leading-none font-light text-cream italic">
+        <h2 className="mt-5 font-display text-[clamp(1.8rem,5vw,3rem)] leading-none font-light text-cream italic sm:mt-8">
           {since.line}
         </h2>
 
         {/* The clock */}
-        <div className="mt-14 flex flex-wrap items-start justify-center gap-x-6 gap-y-10 sm:gap-x-12">
+        <div className="mt-8 flex flex-wrap items-start justify-center gap-x-6 gap-y-6 sm:gap-x-12 sm:mt-14 sm:gap-y-10">
           {columns.map((column) => (
-            <div key={column.label} className="flex items-start gap-6 sm:gap-12">
+            <div key={column.label} className="flex items-start gap-4 sm:gap-12">
               <div className="flex flex-col items-center">
                 <Odometer
                   value={column.value}
@@ -94,7 +94,7 @@ export default function Since() {
         </div>
 
         {/* Heartbeats */}
-        <div className="mt-16 flex flex-col items-center gap-4">
+        <div className="mt-9 flex flex-col items-center gap-4 sm:mt-16">
           <svg
             viewBox="0 0 24 24"
             className="animate-heartbeat h-6 w-6 text-rose"
@@ -113,7 +113,7 @@ export default function Since() {
           </p>
         </div>
 
-        <p className="mt-12 font-script text-[clamp(1.7rem,4.5vw,2.6rem)] leading-none text-blush/90">
+        <p className="mt-7 font-script text-[clamp(1.7rem,4.5vw,2.6rem)] leading-none text-blush/90 sm:mt-12">
           {since.footnote}
         </p>
       </Reveal>

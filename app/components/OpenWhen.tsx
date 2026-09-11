@@ -22,7 +22,7 @@ export default function OpenWhen() {
     );
 
   return (
-    <section id="open-when" className="relative overflow-hidden bg-cream px-6 py-24 sm:py-32">
+    <section id="open-when" className="relative overflow-hidden bg-cream px-6 py-14 sm:py-32">
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         <div className="animate-float-slow absolute top-1/4 -left-32 h-[28rem] w-[28rem] rounded-full bg-blush/30 blur-[130px]" />
         <div
@@ -34,17 +34,17 @@ export default function OpenWhen() {
       <div className="mx-auto max-w-6xl">
         <ChapterMark numeral={openWhen.chapter} label={openWhen.label} align="center" />
 
-        <Reveal delay={100} className="mx-auto mt-8 max-w-2xl text-center">
+        <Reveal delay={100} className="mx-auto mt-5 max-w-2xl text-center sm:mt-8">
           <h2 className="font-display text-[clamp(2.2rem,6vw,3.8rem)] leading-[1.08] font-light text-ink text-balance">
             {openWhen.heading}
             <span className="block text-mulberry italic">{openWhen.headingItalic}</span>
           </h2>
-          <p className="mt-6 font-body text-[0.56rem] tracking-[0.36em] text-muted/70 uppercase">
+          <p className="mt-4 font-body text-[0.56rem] tracking-[0.36em] text-muted/70 uppercase sm:mt-6">
             {openWhen.hint}
           </p>
         </Reveal>
 
-        <ul className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 sm:mt-16 sm:gap-6">
           {openWhen.notes.map((note, i) => {
             const isOpen = open.includes(i);
 
@@ -58,14 +58,14 @@ export default function OpenWhen() {
                   className={`group block h-full w-full text-left ${reduced ? "" : "flip-scene"}`}
                 >
                   <div
-                    className={`min-h-[20rem] w-full ${reduced ? "" : "flip-inner"}`}
+                    className={`min-h-[12rem] sm:min-h-[20rem] w-full ${reduced ? "" : "flip-inner"}`}
                   >
                     {/* Sealed */}
                     <div
                       hidden={reduced && isOpen}
-                      className={`flex min-h-[20rem] flex-col items-center justify-center gap-5 rounded-[1.4rem] border border-rose/25 bg-paper px-7 py-10 text-center shadow-soft transition-shadow duration-500 group-hover:shadow-lift ${
+                      className={`flex min-h-[12rem] sm:min-h-[20rem] flex-col items-center justify-center gap-3.5 rounded-[1.4rem] border border-rose/25 bg-paper px-7 py-7 text-center shadow-soft transition-shadow duration-500 group-hover:shadow-lift ${
                         reduced ? "" : "flip-face"
-                      }`}
+                      } sm:gap-5 sm:py-10`}
                     >
                       <span
                         className="flex h-11 w-11 items-center justify-center rounded-full bg-rose/90 font-display text-lg leading-none text-cream shadow-soft transition-transform duration-500 group-hover:scale-110"
@@ -86,9 +86,9 @@ export default function OpenWhen() {
                     {/* Unsealed */}
                     <div
                       hidden={reduced && !isOpen}
-                      className={`flex min-h-[20rem] flex-col justify-between rounded-[1.4rem] border border-rose/30 bg-linen px-7 py-8 shadow-lift ${
+                      className={`flex min-h-[12rem] sm:min-h-[20rem] flex-col justify-between rounded-[1.4rem] border border-rose/30 bg-linen px-7 py-6 shadow-lift ${
                         reduced ? "mt-4" : "flip-face flip-back"
-                      }`}
+                      } sm:py-8`}
                     >
                       <span className="font-body text-[0.52rem] tracking-[0.36em] text-mulberry/70 uppercase">
                         {note.when}
@@ -99,7 +99,7 @@ export default function OpenWhen() {
                       </p>
 
                       <span
-                        className="mt-5 self-end font-script text-[1.5rem] leading-none text-rose/75"
+                        className="mt-3.5 self-end font-script text-[1.5rem] leading-none text-rose/75 sm:mt-5"
                         aria-hidden="true"
                       >
                         ❤

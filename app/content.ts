@@ -411,7 +411,6 @@ export const promises = {
     "I will not go cold on you to make a point.",
     "I will not make you responsible for how I feel about you.",
     "I will not bring it up sideways, in a joke, at two in the morning.",
-    "I will be normal in front of your friends and mine.",
     "I will take a no as a whole answer and not as an opening position.",
     "I will still turn up when you need someone, and it will not come with a bill.",
     "If being friends turns out to be too hard for me for a while, I will say so honestly rather than disappearing on you.",
@@ -441,7 +440,6 @@ export const drafts = {
   heading: "A lot of drafts.",
   headingItalic: "None of them sent.",
   messages: [
-    { when: "20 august", text: "saw a dog on the way home that looked exactly like the one from that video you sent me" },
     { when: "23 august", text: "this song came on and I thought of you. that is the whole message, there is no second part" },
     { when: "27 august", text: "I hope I did not make things weird. I think I made things weird" },
     { when: "31 august", text: "you would have found this so annoying and I have nobody to tell" },

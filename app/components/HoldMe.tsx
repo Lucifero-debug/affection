@@ -76,7 +76,7 @@ export default function HoldMe() {
   return (
     <section
       id="hold"
-      className="relative isolate flex min-h-[80svh] flex-col items-center justify-center overflow-hidden bg-plum px-6 py-28 text-center"
+      className="relative isolate flex min-h-[62svh] sm:min-h-[80svh] flex-col items-center justify-center overflow-hidden bg-plum px-6 py-16 text-center sm:py-28"
     >
       <Aurora tone="night" opacity={0.55} className="-z-10" />
       <Sparkles count={26} color="bg-blush/70" className="-z-10" />
@@ -86,7 +86,7 @@ export default function HoldMe() {
       </p>
 
       {/* ── The heart you have to hold ─────────────────────────── */}
-      <div className="relative mt-14" data-holding={holding} data-done={done}>
+      <div className="relative mt-8 sm:mt-14" data-holding={holding} data-done={done}>
         <button
           type="button"
           onPointerDown={reduced ? undefined : press}
@@ -146,9 +146,9 @@ export default function HoldMe() {
       </div>
 
       <p
-        className={`mt-10 font-body text-[0.58rem] tracking-[0.4em] uppercase transition-colors duration-500 ${
+        className={`mt-6 font-body text-[0.58rem] tracking-[0.4em] uppercase transition-colors duration-500 ${
           done ? "text-blush" : "text-cream/55"
-        }`}
+        } sm:mt-10`}
         aria-live="polite"
       >
         {done ? "" : label}
@@ -168,11 +168,11 @@ export default function HoldMe() {
               {hold.secret.line}
             </h2>
 
-            <p className="mx-auto mt-8 max-w-xl font-display text-[1.1rem] leading-[1.85] font-light text-blush/85">
+            <p className="mx-auto mt-5 max-w-xl font-display text-[1.1rem] leading-[1.85] font-light text-blush/85 sm:mt-8">
               {hold.secret.body}
             </p>
 
-            <p className="mt-10 font-script text-[clamp(1.9rem,5vw,2.8rem)] leading-none text-blush">
+            <p className="mt-6 font-script text-[clamp(1.9rem,5vw,2.8rem)] leading-none text-blush sm:mt-10">
               {hold.secret.sign}
             </p>
           </div>

@@ -54,7 +54,7 @@ export default function Confession() {
     <section
       ref={ref}
       data-visible={visible}
-      className="relative overflow-hidden bg-linen px-6 py-24 sm:py-32"
+      className="relative overflow-hidden bg-linen px-6 py-14 sm:py-32"
     >
       <div className="mx-auto max-w-3xl text-center">
         <p className="font-body text-[0.58rem] tracking-[0.4em] text-mulberry/75 uppercase">
@@ -62,12 +62,12 @@ export default function Confession() {
         </p>
 
         <div
-          className="mt-12 h-px w-full bg-gradient-to-r from-transparent via-rose/35 to-transparent"
+          className="mt-7 h-px w-full bg-gradient-to-r from-transparent via-rose/35 to-transparent sm:mt-12"
           aria-hidden="true"
         />
 
         {/* Sized to the longest line, so nothing below it ever jumps. */}
-        <div className="relative mt-12 grid">
+        <div className="relative mt-7 grid sm:mt-12">
           <p
             className="invisible col-start-1 row-start-1 font-display text-[clamp(1.4rem,3.6vw,2.5rem)] leading-[1.4] font-light text-balance"
             aria-hidden="true"
@@ -99,7 +99,7 @@ export default function Confession() {
 
         {/* Which one of them you're on */}
         {!reduced && (
-          <div className="mt-14 flex justify-center gap-2" aria-hidden="true">
+          <div className="mt-8 flex justify-center gap-2 sm:mt-14" aria-hidden="true">
             {confession.lines.map((item, i) => (
               <span
                 key={item}

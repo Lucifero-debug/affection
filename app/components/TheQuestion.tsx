@@ -48,7 +48,7 @@ export default function TheQuestion() {
     <>
       <section
         id="the-question"
-        className="relative isolate flex min-h-[92svh] flex-col items-center justify-center overflow-hidden bg-linen px-6 py-28 text-center"
+        className="relative isolate flex min-h-[78svh] sm:min-h-[92svh] flex-col items-center justify-center overflow-hidden bg-linen px-6 py-16 text-center sm:py-28"
       >
         <Aurora tone="warm" opacity={0.7} className="-z-10" />
         <Sparkles count={28} className="-z-10" />
@@ -58,16 +58,16 @@ export default function TheQuestion() {
             {question.kicker}
           </p>
 
-          <h2 className="mt-8 max-w-3xl font-display text-[clamp(2.3rem,7vw,4.6rem)] leading-[1.08] font-light text-balance">
+          <h2 className="mt-5 max-w-3xl font-display text-[clamp(2.3rem,7vw,4.6rem)] leading-[1.08] font-light text-balance sm:mt-8">
             <span className="shimmer">{question.ask}</span>
           </h2>
 
-          <p className="mt-7 max-w-md font-body text-[0.9rem] leading-relaxed text-muted">
+          <p className="mt-5 max-w-md font-body text-[0.9rem] leading-relaxed text-muted sm:mt-7">
             {question.aside}
           </p>
 
           {/* ── Two answers, both of them real ─────────────────── */}
-          <div className="mt-14 flex flex-wrap items-center justify-center gap-6 sm:gap-10">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-10 sm:mt-14">
             <Magnetic strength={0.28}>
               <button
                 type="button"
@@ -133,22 +133,22 @@ export default function TheQuestion() {
               ❤
             </span>
 
-            <p className="mt-10 max-w-2xl font-display text-[clamp(1.9rem,6vw,3.6rem)] leading-[1.15] font-light text-cream text-balance">
+            <p className="mt-6 max-w-2xl font-display text-[clamp(1.9rem,6vw,3.6rem)] leading-[1.15] font-light text-cream text-balance sm:mt-10">
               {question.celebration.line}
             </p>
 
-            <p className="mt-6 font-script text-[clamp(2.4rem,8vw,4.4rem)] leading-none text-blush">
+            <p className="mt-4 font-script text-[clamp(2.4rem,8vw,4.4rem)] leading-none text-blush sm:mt-6">
               {question.celebration.sub}
             </p>
 
-            <p className="mt-10 font-deva text-[clamp(1.2rem,4vw,1.9rem)] leading-none text-cream/60">
+            <p className="mt-6 font-deva text-[clamp(1.2rem,4vw,1.9rem)] leading-none text-cream/60 sm:mt-10">
               {her.nameDevanagari}
             </p>
 
             <button
               type="button"
               onClick={() => setAnswer(null)}
-              className="mt-12 rounded-full border border-cream/30 px-7 py-3 font-body text-[0.56rem] tracking-[0.34em] text-cream/80 uppercase transition-colors hover:border-cream/70 hover:text-cream"
+              className="mt-7 rounded-full border border-cream/30 px-7 py-3 font-body text-[0.56rem] tracking-[0.34em] text-cream/80 uppercase transition-colors hover:border-cream/70 hover:text-cream sm:mt-12"
             >
               keep reading
             </button>
@@ -182,11 +182,11 @@ export default function TheQuestion() {
               />
             </svg>
 
-            <p className="mt-10 font-display text-[clamp(1.7rem,5vw,2.9rem)] leading-[1.2] font-light text-cream text-balance">
+            <p className="mt-6 font-display text-[clamp(1.7rem,5vw,2.9rem)] leading-[1.2] font-light text-cream text-balance sm:mt-10">
               {question.declined.line}
             </p>
 
-            <p className="mt-5 font-display text-[clamp(1.2rem,3.4vw,1.8rem)] leading-snug font-light text-blush/85 italic text-balance">
+            <p className="mt-3.5 font-display text-[clamp(1.2rem,3.4vw,1.8rem)] leading-snug font-light text-blush/85 italic text-balance sm:mt-5">
               {question.declined.sub}
             </p>
 
@@ -197,7 +197,7 @@ export default function TheQuestion() {
             <button
               type="button"
               onClick={() => setAnswer(null)}
-              className="mt-12 rounded-full border border-cream/25 px-7 py-3 font-body text-[0.56rem] tracking-[0.34em] text-cream/70 uppercase transition-colors hover:border-cream/60 hover:text-cream"
+              className="mt-7 rounded-full border border-cream/25 px-7 py-3 font-body text-[0.56rem] tracking-[0.34em] text-cream/70 uppercase transition-colors hover:border-cream/60 hover:text-cream sm:mt-12"
             >
               {question.declined.back}
             </button>

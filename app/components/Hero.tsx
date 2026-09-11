@@ -52,7 +52,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-28 pb-20"
+      className="relative isolate flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-6 pt-20 pb-12 sm:pt-28 sm:pb-20"
     >
       <Aurora tone="warm" opacity={0.42} className="-z-30" />
       <Sparkles count={30} className="-z-20" />
@@ -100,7 +100,7 @@ export default function Hero() {
           text={her.name}
           delay={AFTER_CURTAIN + 180}
           stagger={62}
-          className="mt-7 max-w-[16ch] text-center font-display text-[clamp(3.4rem,14vw,10rem)] leading-[0.9] font-light tracking-[-0.02em] text-ink text-balance"
+          className="mt-5 max-w-[16ch] text-center font-display text-[clamp(3.4rem,14vw,10rem)] leading-[0.9] font-light tracking-[-0.02em] text-ink text-balance sm:mt-7"
         />
 
         <div
@@ -110,7 +110,7 @@ export default function Hero() {
         />
 
         <p
-          className="animate-fade-up mt-8 max-w-xl text-center font-display text-[clamp(1.15rem,2.6vw,1.65rem)] leading-relaxed font-light text-muted italic text-balance"
+          className="animate-fade-up mt-5 max-w-xl text-center font-display text-[clamp(1.15rem,2.6vw,1.65rem)] leading-relaxed font-light text-muted italic text-balance sm:mt-8"
           style={{ animationDelay: `${AFTER_CURTAIN + 1050}ms` }}
         >
           {her.tagline}
@@ -118,7 +118,7 @@ export default function Hero() {
 
         {/* One word at a time, and the last one is the point */}
         <p
-          className="animate-fade-up mt-7 flex items-baseline gap-3 font-body text-[0.62rem] tracking-[0.36em] text-mulberry/70 uppercase"
+          className="animate-fade-up mt-5 flex items-baseline gap-3 font-body text-[0.62rem] tracking-[0.36em] text-mulberry/70 uppercase sm:mt-7"
           style={{ animationDelay: `${AFTER_CURTAIN + 1200}ms` }}
         >
           <span>she is</span>
@@ -133,7 +133,7 @@ export default function Hero() {
       {/* Arched portrait */}
       <div
         ref={portraitRef}
-        className="animate-fade-up group relative mt-14 w-full max-w-[17rem] will-change-transform sm:max-w-[20rem]"
+        className="animate-fade-up group relative mt-8 w-full max-w-[17rem] will-change-transform sm:max-w-[20rem] sm:mt-14"
         style={{ animationDelay: `${AFTER_CURTAIN + 1250}ms` }}
       >
         <div
@@ -170,7 +170,7 @@ export default function Hero() {
       </div>
 
       {/* Scroll cue */}
-      <Magnetic strength={0.4} className="mt-12">
+      <Magnetic strength={0.4} className="mt-7 sm:mt-12">
       <a
         href="#statement"
         className="animate-fade-up flex flex-col items-center gap-2 text-muted/70 transition-colors hover:text-mulberry"

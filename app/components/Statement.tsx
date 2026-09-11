@@ -28,12 +28,12 @@ export default function Statement() {
 
   return (
     <>
-      <section id="statement" ref={trackRef} className="relative h-[230vh]">
+      <section id="statement" ref={trackRef} className="relative h-[165vh] sm:h-[230vh]">
         <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden px-6">
           <div className="mx-auto w-full max-w-4xl">
             <ChapterMark numeral={statement.chapter} label={statement.label} />
 
-            <p className="mt-10 font-display text-[clamp(1.6rem,4.6vw,3.4rem)] leading-[1.32] font-light text-ink">
+            <p className="mt-6 font-display text-[clamp(1.6rem,4.6vw,3.4rem)] leading-[1.32] font-light text-ink sm:mt-10">
               {words.map((raw, i) => {
                 const emphasised = raw.startsWith("*") || /^\W*\*/.test(raw);
                 const clean = raw.replace(/\*/g, "");
@@ -58,7 +58,7 @@ export default function Statement() {
       </section>
 
       {/* Pull quote */}
-      <section className="relative overflow-hidden px-6 py-28 sm:py-40">
+      <section className="relative overflow-hidden px-6 py-16 sm:py-40">
         <div
           className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center"
           aria-hidden="true"
@@ -73,7 +73,7 @@ export default function Statement() {
             {statement.pullQuote}
           </blockquote>
           <div
-            className="mx-auto mt-10 h-px w-24 bg-gradient-to-r from-transparent via-rose/60 to-transparent"
+            className="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-rose/60 to-transparent sm:mt-10"
             aria-hidden="true"
           />
         </Reveal>

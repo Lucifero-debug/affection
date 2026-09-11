@@ -58,7 +58,7 @@ export default function ReasonsDeck() {
   };
 
   return (
-    <section id="reasons" className="relative overflow-hidden bg-paper px-6 py-24 sm:py-32">
+    <section id="reasons" className="relative overflow-hidden bg-paper px-6 py-14 sm:py-32">
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         <div className="animate-float-slow absolute -left-24 top-10 h-[26rem] w-[26rem] rounded-full bg-blush/35 blur-[120px]" />
         <div
@@ -70,7 +70,7 @@ export default function ReasonsDeck() {
       <div className="mx-auto max-w-5xl">
         <ChapterMark numeral={reasons.chapter} label={reasons.label} align="center" />
 
-        <Reveal delay={100} className="mx-auto mt-8 max-w-2xl text-center">
+        <Reveal delay={100} className="mx-auto mt-5 max-w-2xl text-center sm:mt-8">
           <h2 className="font-display text-[clamp(2.2rem,6vw,3.8rem)] leading-[1.08] font-light text-ink text-balance">
             {reasons.heading}
             <span className="block text-mulberry italic">{reasons.headingItalic}</span>
@@ -78,7 +78,7 @@ export default function ReasonsDeck() {
         </Reveal>
 
         {/* ── The deck ───────────────────────────────────────── */}
-        <Reveal delay={220} className="mt-16 flex flex-col items-center">
+        <Reveal delay={220} className="mt-9 flex flex-col items-center sm:mt-16">
           <div
             className="relative h-[19rem] w-full max-w-md [perspective:1400px] sm:h-[17rem]"
             role="group"
@@ -138,7 +138,7 @@ export default function ReasonsDeck() {
           </div>
 
           {/* Controls */}
-          <div className="mt-10 flex items-center gap-6">
+          <div className="mt-6 flex items-center gap-4 sm:mt-10 sm:gap-6">
             <button
               type="button"
               onClick={() => send(-1)}
@@ -159,7 +159,7 @@ export default function ReasonsDeck() {
             </span>
           </div>
 
-          <p className="mt-6 font-body text-[0.56rem] tracking-[0.34em] text-muted/60 uppercase">
+          <p className="mt-4 font-body text-[0.56rem] tracking-[0.34em] text-muted/60 uppercase sm:mt-6">
             {reasons.hint}
           </p>
         </Reveal>

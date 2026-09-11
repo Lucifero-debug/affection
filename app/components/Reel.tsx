@@ -51,7 +51,7 @@ export default function Reel() {
   });
 
   return (
-    <section ref={trackRef} id="reel" className="relative h-[330vh] bg-ink">
+    <section ref={trackRef} id="reel" className="relative h-[240vh] bg-ink sm:h-[330vh]">
       <div className="sticky top-0 flex h-[100svh] flex-col justify-center overflow-hidden">
         {/* Warm glow so the dark room isn't flat */}
         <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -80,7 +80,7 @@ export default function Reel() {
         {/* The rail */}
         <div
           ref={railRef}
-          className="relative z-10 flex w-max items-start gap-6 pr-16 pl-6 will-change-transform sm:gap-10 sm:pl-12"
+          className="relative z-10 flex w-max items-start gap-4 pr-16 pl-6 will-change-transform sm:gap-10 sm:pl-12"
         >
           {reel.clips.map((clip, i) => (
             <figure
@@ -121,7 +121,7 @@ export default function Reel() {
         </div>
 
         {/* Reel progress */}
-        <div className="relative z-10 mx-6 mt-10 h-px bg-cream/15 sm:mx-12" aria-hidden="true">
+        <div className="relative z-10 mx-6 mt-6 h-px bg-cream/15 sm:mx-12 sm:mt-10" aria-hidden="true">
           <div ref={barRef} className="h-full origin-left bg-blush" style={{ transform: "scaleX(0)" }} />
         </div>
       </div>

@@ -13,7 +13,7 @@ export default function Letter() {
   const [open, setOpen] = useState(false);
 
   return (
-    <section id="letter" className="relative overflow-hidden px-6 py-24 sm:py-32">
+    <section id="letter" className="relative overflow-hidden px-6 py-14 sm:py-32">
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
         <div className="animate-float-slow absolute top-16 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-blush/30 blur-[130px]" />
       </div>
@@ -22,7 +22,7 @@ export default function Letter() {
         <ChapterMark numeral={letter.chapter} label={letter.label} align="center" />
 
         {/* ── The envelope ─────────────────────────────────── */}
-        <div className="envelope-scene relative mt-12" data-open={open}>
+        <div className="envelope-scene relative mt-7 sm:mt-12" data-open={open}>
           {/* Flap */}
           <div
             className="envelope-flap absolute inset-x-0 top-0 z-30 h-24 bg-linen sm:h-32"
@@ -50,7 +50,7 @@ export default function Letter() {
                   }`}
                 >
                   <div
-                    className="mx-auto mb-10 h-px w-full bg-gradient-to-r from-transparent via-rose/25 to-transparent"
+                    className="mx-auto mb-6 h-px w-full bg-gradient-to-r from-transparent via-rose/25 to-transparent sm:mb-10"
                     aria-hidden="true"
                   />
 
@@ -60,7 +60,7 @@ export default function Letter() {
                       className={`font-display text-[1.24rem] leading-[1.9] font-light text-ink ${
                         i === 0
                           ? "first-letter:float-left first-letter:mt-2 first-letter:mr-3 first-letter:font-display first-letter:text-[4.4rem] first-letter:leading-[0.75] first-letter:font-light first-letter:text-rose"
-                          : "mt-7"
+                          : "mt-5 sm:mt-7"
                       }`}
                     >
                       {paragraph}
@@ -68,11 +68,11 @@ export default function Letter() {
                   ))}
 
                   <div
-                    className="mx-auto mt-12 h-px w-24 bg-gradient-to-r from-transparent via-rose/50 to-transparent"
+                    className="mx-auto mt-7 h-px w-24 bg-gradient-to-r from-transparent via-rose/50 to-transparent sm:mt-12"
                     aria-hidden="true"
                   />
 
-                  <p className="mt-8 text-right font-script text-[2.5rem] leading-none text-mulberry">
+                  <p className="mt-5 text-right font-script text-[2.5rem] leading-none text-mulberry sm:mt-8">
                     {letter.signature}
                   </p>
                 </div>
@@ -110,7 +110,7 @@ export default function Letter() {
         </div>
 
         {/* Re-fold */}
-        <Reveal className={`mt-10 text-center ${open ? "" : "invisible"}`}>
+        <Reveal className={`mt-6 text-center ${open ? "" : "invisible"} sm:mt-10`}>
           <button
             type="button"
             onClick={() => setOpen(false)}

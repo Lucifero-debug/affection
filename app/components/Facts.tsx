@@ -42,24 +42,24 @@ export default function Facts() {
   }, []);
 
   return (
-    <section id="facts" className="relative bg-paper px-6 py-24 sm:py-32">
-      <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-20">
+    <section id="facts" className="relative bg-paper px-6 py-14 sm:py-32">
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-20 sm:gap-14">
         {/* Sticky title column */}
         <div className="lg:sticky lg:top-0 lg:flex lg:h-[100svh] lg:flex-col lg:justify-center">
           <ChapterMark numeral={facts.chapter} label={facts.label} />
 
           <Reveal delay={120}>
-            <h2 className="mt-8 font-display text-[clamp(2.2rem,6vw,3.8rem)] leading-[1.05] font-light text-ink">
+            <h2 className="mt-5 font-display text-[clamp(2.2rem,6vw,3.8rem)] leading-[1.05] font-light text-ink sm:mt-8">
               Things I know
               <span className="block text-mulberry italic">about {her.name}</span>
             </h2>
-            <p className="mt-6 max-w-xs font-body text-[0.9rem] leading-relaxed text-muted">
+            <p className="mt-4 max-w-xs font-body text-[0.9rem] leading-relaxed text-muted sm:mt-6">
               Collected slowly, and on purpose.
             </p>
           </Reveal>
 
           {/* Counter */}
-          <div className="mt-12 hidden items-baseline gap-3 lg:flex" aria-hidden="true">
+          <div className="mt-7 hidden items-baseline gap-3 lg:flex sm:mt-12" aria-hidden="true">
             <span className="relative block h-24 w-24 overflow-hidden">
               <span
                 className="absolute inset-0 flex flex-col transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
@@ -92,7 +92,7 @@ export default function Facts() {
                 itemRefs.current[i] = node;
               }}
               data-active={i === active}
-              className="group relative border-t border-rose/20 py-12 transition-colors duration-500 last:border-b sm:py-16"
+              className="group relative border-t border-rose/20 py-7 transition-colors duration-500 last:border-b sm:py-16"
             >
               {/* Rule that fills in on the active fact */}
               <span
@@ -105,11 +105,11 @@ export default function Facts() {
                   {String(i + 1).padStart(2, "0")} &nbsp;·&nbsp; {fact.label}
                 </span>
 
-                <h3 className="mt-5 max-w-[20ch] font-display text-[clamp(1.7rem,3.6vw,2.6rem)] leading-[1.15] font-light text-ink transition-colors duration-500 group-data-[active=true]:text-plum">
+                <h3 className="mt-3.5 max-w-[20ch] font-display text-[clamp(1.7rem,3.6vw,2.6rem)] leading-[1.15] font-light text-ink transition-colors duration-500 group-data-[active=true]:text-plum sm:mt-5">
                   {fact.title}
                 </h3>
 
-                <p className="mt-5 max-w-xl font-body text-[0.95rem] leading-[1.85] text-muted transition-opacity duration-500 group-data-[active=false]:opacity-70">
+                <p className="mt-3.5 max-w-xl font-body text-[0.95rem] leading-[1.85] text-muted transition-opacity duration-500 group-data-[active=false]:opacity-70 sm:mt-5">
                   {fact.body}
                 </p>
               </Reveal>

@@ -9,24 +9,24 @@ import Reveal from "./Reveal";
  */
 export default function Promises() {
   return (
-    <section id="promises" className="relative overflow-hidden bg-paper px-6 py-24 sm:py-32">
+    <section id="promises" className="relative overflow-hidden bg-paper px-6 py-14 sm:py-32">
       <div className="mx-auto max-w-4xl">
         <ChapterMark numeral={promises.chapter} label={promises.label} align="center" />
 
-        <Reveal delay={100} className="mx-auto mt-8 max-w-2xl text-center">
+        <Reveal delay={100} className="mx-auto mt-5 max-w-2xl text-center sm:mt-8">
           <h2 className="font-display text-[clamp(2.2rem,6vw,3.8rem)] leading-[1.08] font-light text-ink text-balance">
             {promises.heading}
             <span className="block text-mulberry italic">{promises.headingItalic}</span>
           </h2>
-          <p className="mt-6 font-body text-[0.92rem] leading-relaxed text-muted">
+          <p className="mt-4 font-body text-[0.92rem] leading-relaxed text-muted sm:mt-6">
             {promises.sub}
           </p>
         </Reveal>
 
-        <ol className="mt-16">
+        <ol className="mt-9 sm:mt-16">
           {promises.items.map((promise, i) => (
             <Reveal as="li" key={promise} className="group relative block py-7">
-              <div className="flex items-start gap-5 sm:gap-8">
+              <div className="flex items-start gap-3.5 sm:gap-8">
                 {/* The tick, drawn */}
                 <svg
                   viewBox="0 0 32 32"
@@ -76,9 +76,9 @@ export default function Promises() {
           ))}
         </ol>
 
-        <Ornament className="mt-16" />
+        <Ornament className="mt-9 sm:mt-16" />
 
-        <Reveal delay={160} className="mt-12 text-center">
+        <Reveal delay={160} className="mt-7 text-center sm:mt-12">
           <p className="font-script text-[clamp(2rem,5.5vw,3.2rem)] leading-none text-mulberry">
             signed, and meant
           </p>

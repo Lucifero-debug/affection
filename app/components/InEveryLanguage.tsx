@@ -30,7 +30,7 @@ export default function InEveryLanguage() {
   const current = languages.items[active];
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-linen px-6 py-24 sm:py-32">
+    <section ref={ref} className="relative overflow-hidden bg-linen px-6 py-14 sm:py-32">
       <Sparkles count={20} className="-z-10" />
 
       <div className="mx-auto max-w-4xl text-center">
@@ -39,7 +39,7 @@ export default function InEveryLanguage() {
         </p>
 
         {/* The one being said right now */}
-        <div className="relative mt-14 flex min-h-[9rem] flex-col items-center justify-center sm:min-h-[11rem]">
+        <div className="relative mt-8 flex min-h-[9rem] flex-col items-center justify-center sm:min-h-[11rem] sm:mt-14">
           <p
             key={reduced ? "static" : active}
             className={`font-display text-[clamp(2.2rem,7vw,4.4rem)] leading-[1.15] font-light text-plum text-balance ${
@@ -49,13 +49,13 @@ export default function InEveryLanguage() {
           >
             {current.phrase}
           </p>
-          <span className="mt-6 font-body text-[0.56rem] tracking-[0.4em] text-mulberry/60 uppercase">
+          <span className="mt-4 font-body text-[0.56rem] tracking-[0.4em] text-mulberry/60 uppercase sm:mt-6">
             {current.lang}
           </span>
         </div>
 
         {/* All of them, always there */}
-        <ul className="mt-14 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+        <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:mt-14">
           {languages.items.map((item, i) => (
             <li key={item.lang}>
               <button
@@ -78,10 +78,10 @@ export default function InEveryLanguage() {
 
         <Reveal delay={120}>
           <div
-            className="mx-auto mt-16 h-px w-24 bg-gradient-to-r from-transparent via-rose/50 to-transparent"
+            className="mx-auto mt-9 h-px w-24 bg-gradient-to-r from-transparent via-rose/50 to-transparent sm:mt-16"
             aria-hidden="true"
           />
-          <p className="mt-10 font-display text-[clamp(1.4rem,3.6vw,2.2rem)] leading-snug font-light text-ink text-balance">
+          <p className="mt-6 font-display text-[clamp(1.4rem,3.6vw,2.2rem)] leading-snug font-light text-ink text-balance sm:mt-10">
             {languages.line}{" "}
             <span className="text-mulberry italic">{languages.lineItalic}</span>
           </p>

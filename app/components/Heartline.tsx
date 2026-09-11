@@ -14,7 +14,7 @@ const TRACE = `M0 50 ${Array.from({ length: 4 }, () => BEAT).join(" ")}`;
  */
 export default function Heartline() {
   return (
-    <section className="relative overflow-hidden bg-ink py-20 sm:py-28">
+    <section className="relative overflow-hidden bg-ink py-12 sm:py-28">
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute top-1/2 left-1/2 h-[26rem] w-[46rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-rose/15 blur-[130px]" />
       </div>
@@ -26,7 +26,7 @@ export default function Heartline() {
       </Reveal>
 
       {/* The trace */}
-      <div className="relative mt-12 mb-12 overflow-hidden" aria-hidden="true">
+      <div className="relative mt-7 mb-12 overflow-hidden sm:mt-12" aria-hidden="true">
         <div className="ecg-track flex w-[200%]">
           {[0, 1].map((i) => (
             <svg
@@ -61,7 +61,7 @@ export default function Heartline() {
 
         <svg
           viewBox="0 0 24 24"
-          className="animate-heartbeat mx-auto mt-10 h-6 w-6 text-rose"
+          className="animate-heartbeat mx-auto mt-6 h-6 w-6 text-rose sm:mt-10"
           fill="currentColor"
           aria-hidden="true"
         >
